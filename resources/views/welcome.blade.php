@@ -15,6 +15,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
@@ -22,6 +23,7 @@
             background: #0b0f19;
             color: #f5f5f5;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a {
@@ -42,22 +44,24 @@
         nav {
             position: sticky;
             top: 0;
-            z-index: 100;
-            background: rgba(11, 15, 25, 0.92);
+            z-index: 1000;
+            background: rgba(11, 15, 25, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid #1f2937;
         }
 
         .nav-content {
-            height: 70px;
+            min-height: 70px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative;
         }
 
         .logo {
             font-size: 22px;
             font-weight: bold;
+            white-space: nowrap;
         }
 
         .logo span {
@@ -66,6 +70,7 @@
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 28px;
             list-style: none;
         }
@@ -73,9 +78,31 @@
         .nav-links a {
             color: #cbd5e1;
             transition: 0.3s;
+            display: block;
         }
 
         .nav-links a:hover {
+            color: #ff4d43;
+        }
+
+        /* TOMBOL MENU HP */
+
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: 1px solid #374151;
+            color: #f5f5f5;
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            font-size: 24px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-toggle:hover {
+            border-color: #ff4d43;
             color: #ff4d43;
         }
 
@@ -401,32 +428,112 @@
             color: #64748b;
         }
 
-        /* =========================
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .hero-content {
+                gap: 35px;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+
+            .photo {
+                width: 270px;
+                height: 270px;
+            }
+
+            .nav-links {
+                gap: 18px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+        }
+
+        /* =====================================================
            MOBILE
-        ========================= */
+        ===================================================== */
 
         @media (max-width: 768px) {
 
-            .nav-links {
-                display: none;
+            .container {
+                width: 92%;
             }
 
+            /* NAVBAR HP */
+
+            .nav-content {
+                min-height: 65px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 65px;
+                left: 0;
+                right: 0;
+
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+
+                gap: 0;
+
+                background: #0b0f19;
+                border: 1px solid #1f2937;
+                border-top: none;
+                border-radius: 0 0 12px 12px;
+
+                overflow: hidden;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                padding: 14px 20px;
+                border-bottom: 1px solid #1f2937;
+                color: #cbd5e1;
+            }
+
+            .nav-links li:last-child a {
+                border-bottom: none;
+            }
+
+            .nav-links a:hover {
+                background: #111827;
+                color: #ff4d43;
+            }
+
+            /* HERO HP */
+
             .hero {
-                padding: 70px 0;
+                min-height: auto;
+                padding: 70px 0 80px;
             }
 
             .hero-content {
                 grid-template-columns: 1fr;
+                gap: 45px;
                 text-align: center;
-            }
-
-            .hero p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .buttons {
-                justify-content: center;
             }
 
             .photo-wrapper {
@@ -438,10 +545,53 @@
                 height: 230px;
             }
 
-            .about,
-            .skills,
-            .projects {
+            .hello {
+                font-size: 16px;
+            }
+
+            .hero h1 {
+                font-size: clamp(38px, 11vw, 52px);
+                line-height: 1.08;
+            }
+
+            .hero p {
+                font-size: 16px;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 500px;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 12px 20px;
+            }
+
+            /* SECTION HP */
+
+            section {
+                padding: 75px 0;
+            }
+
+            .section-title {
+                margin-bottom: 35px;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            /* ABOUT HP */
+
+            .about {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card {
+                padding: 22px;
             }
 
             .biodata div {
@@ -453,13 +603,95 @@
                 text-align: left;
             }
 
-            section {
-                padding: 70px 0;
+            /* SKILLS HP */
+
+            .skills {
+                grid-template-columns: 1fr;
             }
+
+            .skill {
+                padding: 22px;
+            }
+
+            /* PROJECT HP */
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .project {
+                padding: 22px;
+            }
+
+            .project h3 {
+                font-size: 21px;
+            }
+
+            /* CONTACT HP */
 
             .contact-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .contact-buttons .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            /* FOOTER HP */
+
+            footer {
+                padding: 22px 0;
+                font-size: 14px;
+            }
+        }
+
+        /* =====================================================
+           MOBILE KECIL
+        ===================================================== */
+
+        @media (max-width: 400px) {
+
+            .logo {
+                font-size: 15px;
+            }
+
+            .menu-toggle {
+                width: 40px;
+                height: 40px;
+                font-size: 22px;
+            }
+
+            .hero {
+                padding-top: 55px;
+            }
+
+            .photo {
+                width: 200px;
+                height: 200px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .buttons .btn {
+                width: 100%;
+                max-width: 260px;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
             }
         }
     </style>
@@ -478,7 +710,18 @@
                 Fauzan Maulana, S.Tr.T<span>.</span>
             </div>
 
-            <ul class="nav-links">
+            <!-- TOMBOL MENU HP -->
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Buka menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+
                 <li>
                     <a href="#home">Home</a>
                 </li>
@@ -498,6 +741,7 @@
                 <li>
                     <a href="#contact">Kontak</a>
                 </li>
+
             </ul>
 
         </div>
@@ -530,11 +774,17 @@
 
                 <div class="buttons">
 
-                    <a href="#projects" class="btn btn-primary">
+                    <a
+                        href="#projects"
+                        class="btn btn-primary"
+                    >
                         Lihat Project
                     </a>
 
-                    <a href="#contact" class="btn btn-outline">
+                    <a
+                        href="#contact"
+                        class="btn btn-outline"
+                    >
                         Hubungi Saya
                     </a>
 
@@ -584,30 +834,39 @@
 
             <div class="about">
 
+                <!-- PROFIL -->
+
                 <div class="card">
 
                     <h3>Profil</h3>
 
                     <p>
-                        Saya adalah lulusan <strong>Politeknik Negeri Lhokseumawe</strong>, 
-                        Jurusan <strong>Teknologi Informasi dan Komputer</strong>, Program Studi 
-                        <strong>Teknologi Rekayasa Komputer dan Jaringan</strong>, yang memiliki 
-                        passion dalam pengembangan <strong>aplikasi mobile</strong>, 
-                        <strong>website</strong>, dan <strong>jaringan komputer</strong>.
+                        Saya adalah lulusan
+                        <strong>Politeknik Negeri Lhokseumawe</strong>,
+                        Jurusan
+                        <strong>Teknologi Informasi dan Komputer</strong>,
+                        Program Studi
+                        <strong>Teknologi Rekayasa Komputer dan Jaringan</strong>,
+                        yang memiliki passion dalam pengembangan
+                        <strong>aplikasi mobile</strong>,
+                        <strong>website</strong>, dan
+                        <strong>jaringan komputer</strong>.
                     </p>
 
                     <br>
 
                     <p>
-                        Dengan latar belakang pendidikan di bidang teknologi informasi, 
-                        saya berkomitmen untuk terus mengembangkan skill dan menciptakan 
-                        solusi teknologi yang inovatif. Saya percaya bahwa teknologi yang 
-                        baik adalah teknologi yang dapat memberikan nilai tambah dan 
+                        Dengan latar belakang pendidikan di bidang teknologi informasi,
+                        saya berkomitmen untuk terus mengembangkan skill dan menciptakan
+                        solusi teknologi yang inovatif. Saya percaya bahwa teknologi yang
+                        baik adalah teknologi yang dapat memberikan nilai tambah dan
                         memudahkan kehidupan pengguna.
                     </p>
 
                 </div>
 
+
+                <!-- BIODATA -->
 
                 <div class="card">
 
@@ -617,7 +876,9 @@
 
                         <div>
                             <span>Nama</span>
-                            <strong>Fauzan Maulana, S.Tr.T.</strong>
+                            <strong>
+                                Fauzan Maulana, S.Tr.T.
+                            </strong>
                         </div>
 
                         <div>
@@ -629,12 +890,16 @@
 
                         <div>
                             <span>Jurusan</span>
-                            <strong>Teknologi Informasi dan Komputer</strong>
+                            <strong>
+                                Teknologi Informasi dan Komputer
+                            </strong>
                         </div>
 
                         <div>
                             <span>Program Studi</span>
-                            <strong>Teknologi Rekayasa Komputer Jaringan</strong>
+                            <strong>
+                                Teknologi Rekayasa Komputer Jaringan
+                            </strong>
                         </div>
 
                     </div>
@@ -669,9 +934,13 @@
 
             <div class="skills">
 
+                <!-- NETWORKING -->
+
                 <div class="skill">
 
-                   <h3>🌐 Computer Networking</h3>
+                    <h3>
+                        🌐 Computer Networking
+                    </h3>
 
                     <p>
                         Konfigurasi jaringan, troubleshooting,
@@ -681,9 +950,13 @@
                 </div>
 
 
+                <!-- MOBILE -->
+
                 <div class="skill">
 
-                    <h3>📱 Mobile App Development</h3>
+                    <h3>
+                        📱 Mobile App Development
+                    </h3>
 
                     <p>
                         Pengembangan aplikasi mobile menggunakan
@@ -693,9 +966,13 @@
                 </div>
 
 
+                <!-- WEB -->
+
                 <div class="skill">
 
-                    <h3>💻 Web Development</h3>
+                    <h3>
+                        💻 Web Development
+                    </h3>
 
                     <p>
                         Pengembangan website menggunakan framework Laravel.
@@ -731,6 +1008,8 @@
 
             <div class="projects">
 
+                <!-- PROJECT 01 -->
+
                 <div class="project">
 
                     <div class="project-number">
@@ -743,26 +1022,39 @@
 
                     <p>
                         Aplikasi mobile untuk membantu pengelolaan inventaris laboratorium
-                        secara <strong>real-time</strong> di <strong>Jurusan Teknologi Informasi dan Komputer</strong>,
+                        secara <strong>real-time</strong> di
+                        <strong>Jurusan Teknologi Informasi dan Komputer</strong>,
                         <strong>Politeknik Negeri Lhokseumawe</strong>.
                     </p>
 
                     <div class="tags">
 
-                     <span class="tag">Flutter</span>
-<span class="tag">Cloud</span>
-<span class="tag">Real-Time</span>
+                        <span class="tag">
+                            Flutter
+                        </span>
+
+                        <span class="tag">
+                            Cloud
+                        </span>
+
+                        <span class="tag">
+                            Real-Time
+                        </span>
 
                     </div>
 
-                    <a href="https://aplikasi-inventaris-cb59a.web.app" 
-                       target="_blank" 
-                       class="project-link">
-                       Lihat Project →
+                    <a
+                        href="https://aplikasi-inventaris-cb59a.web.app"
+                        target="_blank"
+                        class="project-link"
+                    >
+                        Lihat Project →
                     </a>
 
                 </div>
 
+
+                <!-- PROJECT 02 -->
 
                 <div class="project">
 
@@ -775,9 +1067,10 @@
                     </h3>
 
                     <p>
-                        Aplikasi deteksi phishing yang menganalisis URL untuk mengidentifikasi 
-                        kemungkinan website phishing menggunakan <strong>machine learning</strong> 
-                        dengan algoritma Random Forest.
+                        Aplikasi deteksi phishing yang menganalisis URL untuk
+                        mengidentifikasi kemungkinan website phishing menggunakan
+                        <strong>machine learning</strong> dengan algoritma
+                        Random Forest.
                     </p>
 
                     <div class="tags">
@@ -796,10 +1089,12 @@
 
                     </div>
 
-                    <a href="https://phising-b55a5.web.app/" 
-                       target="_blank" 
-                       class="project-link">
-                       Lihat Project →
+                    <a
+                        href="https://phising-b55a5.web.app/"
+                        target="_blank"
+                        class="project-link"
+                    >
+                        Lihat Project →
                     </a>
 
                 </div>
@@ -824,18 +1119,20 @@
                 <h2>Hubungi Saya</h2>
 
                 <p>
-                    Tertarik untuk berdiskusi atau bekerja sama? 
+                    Tertarik untuk berdiskusi atau bekerja sama?
                     Silakan hubungi saya melalui email atau WhatsApp.
                 </p>
 
             </div>
 
+
             <div class="contact-buttons">
+
                 <a
                     href="mailto:fauzan78888@gmail.com"
                     class="btn btn-primary"
                 >
-                    📧 Email 
+                    📧 Email
                 </a>
 
                 <a
@@ -845,6 +1142,7 @@
                 >
                     💬 WhatsApp
                 </a>
+
             </div>
 
         </div>
@@ -866,6 +1164,50 @@
         </div>
 
     </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT MENU HP
+    ========================= -->
+
+    <script>
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', function () {
+
+            navLinks.classList.toggle('active');
+
+            const isOpen = navLinks.classList.contains('active');
+
+            menuToggle.setAttribute('aria-expanded', isOpen);
+
+            if (isOpen) {
+                menuToggle.innerHTML = '✕';
+            } else {
+                menuToggle.innerHTML = '☰';
+            }
+
+        });
+
+
+        // Tutup menu setelah memilih menu
+        document.querySelectorAll('.nav-links a').forEach(function (link) {
+
+            link.addEventListener('click', function () {
+
+                navLinks.classList.remove('active');
+
+                menuToggle.setAttribute('aria-expanded', 'false');
+
+                menuToggle.innerHTML = '☰';
+
+            });
+
+        });
+
+    </script>
 
 </body>
 </html>
